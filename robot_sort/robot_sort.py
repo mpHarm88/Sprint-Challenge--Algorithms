@@ -1,3 +1,26 @@
+"""
+
+for loop to envoke while loops until test passes
+
+
+while robot can move right:
+    if none then swap and move right
+
+    swap numbers if held number is bigger than compared number and move right
+
+    dont swap if number is smaller or the same, then proceed to move right
+
+while I can move left:
+    if none then swap and move left
+
+    swap number is held number is smaller than compared number and move left
+
+    dont swap if number is bigger or the same, then proceed to move left
+
+
+--recursive sorting might be helpful here--
+"""
+
 class SortingRobot:
     def __init__(self, l):
         """
@@ -96,8 +119,50 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+
+        # min range needed to pass tests
+        for _ in range(30):
+            
+            # if move right then compare, if None then swap
+            while self.can_move_right() == True:
+                if self.compare_item() == None:
+                    self.swap_item()
+                    self.move_right()
+
+                # compare items, if held item is smaller then swap and move right
+                elif self.compare_item() == -1:
+                    self.swap_item()
+                    self.move_right()
+                
+                # compare items, if held item is bigger then move right
+                elif self.compare_item() == 1:
+                    self.move_right()
+
+                # compare items, if the same then move right
+                elif self.compare_item() == 0:
+                    self.move_right()
+                
+           # if move left then compare, if None then swap
+            while self.can_move_left() == True:
+                if self.compare_item() == None:
+                        self.swap_item()
+                        self.set_light_on()
+                        self.move_left()
+
+                # compare items, if held item is smaller move left
+                elif self.compare_item() == -1:
+                    self.move_left()
+
+                # comapre items, if held item is bigger then swap abd move left
+                elif self.compare_item() == 1:
+                    self.swap_item()
+                    self.move_left()
+                
+                # compare items, if the same then move left
+                elif self.compare_item() == 0:
+                    self.move_left()            
+        
+        return
 
 
 if __name__ == "__main__":
